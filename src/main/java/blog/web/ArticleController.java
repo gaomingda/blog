@@ -7,6 +7,8 @@ import blog.service.impl.ArticleServiceImpl;
 import blog.service.impl.CommentServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ import java.util.List;
 
 @Controller
 public class ArticleController {
-
+    private final static Logger logger = LoggerFactory.getLogger(ArticleController.class);
     @Autowired
     ArticleServiceImpl articleService;
     @Autowired
@@ -88,6 +90,7 @@ public class ArticleController {
     }
     @RequestMapping("/admin/article/add/do")
     public String articleAddDo(HttpServletRequest request,RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
+
         request.setCharacterEncoding("utf-8");
         Article article=new Article();
         article.setTitle(request.getParameter("title"));
@@ -96,6 +99,8 @@ public class ArticleController {
         article.setdesci(request.getParameter("desci"));
         article.setContent(request.getParameter("content"));
         article.setTime(new Date());
+        logger.info(article.getTitle());
+        logger.info(article.getdesci());
         if (articleService.insert(article)){
             redirectAttributes.addFlashAttribute("succ", "发表文章成功！");
             return "redirect:/admin/article/add";

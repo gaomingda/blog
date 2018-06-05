@@ -101,4 +101,20 @@ public class Article {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", keywords='" + keywords + '\'' +
+                ", desci='" + desci + '\'' +
+                ", pic='" + pic + '\'' +
+                ", click=" + click +
+                ", time=" + time +
+                ", catalogId=" + catalogId +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
