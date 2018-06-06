@@ -54,8 +54,8 @@
         </div>
         <div class="form-group">
             <label for="editor">内容</label>
-            <script id="editor" type="text/plain"  name="content" style="width:1024px;height:500px;" >
-            </script>
+            <input id="editor" type="text/plain"  name="content" style="width:1024px;height:500px;" >
+            </input>
             </div>
             <input type="submit" />
                 </form>
