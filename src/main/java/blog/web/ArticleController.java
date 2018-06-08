@@ -127,7 +127,8 @@ public class ArticleController {
         return modelAndView;
     }
     @RequestMapping(value = "/admin/article/edit/do")
-    public ModelAndView articleEditDo(HttpServletRequest request){
+    public ModelAndView articleEditDo(HttpServletRequest request) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
         Article article=new Article();
         article.setId(Integer.parseInt(request.getParameter("id")));
         article.setTitle(request.getParameter("title"));

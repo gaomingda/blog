@@ -54,13 +54,13 @@
         </div>
         <div class="form-group">
             <label for="editor">内容</label>
-            <input id="editor" type="text/plain"  name="content" style="width:1024px;height:500px;" >
-            </input>
-            </div>
-            <input type="submit" />
-                </form>
+            <script id="editor" type="text/plain"  name="content" style="width:1024px;height:500px;" ></script>
 
-                <script>
+            <input type="submit" />
+         </div>
+    </form>
+
+           <script>
                 $(function(){
                     var ue = UE.getEditor('editor');
                     ue.ready(function() {
@@ -68,6 +68,6 @@
                     });
                 });
             </script>
-        </div>
+
 </body>
 </html>
