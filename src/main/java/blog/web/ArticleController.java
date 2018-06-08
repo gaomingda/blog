@@ -132,6 +132,7 @@ public class ArticleController {
         Article article=new Article();
         article.setId(Integer.parseInt(request.getParameter("id")));
         article.setTitle(request.getParameter("title"));
+        logger.info(article.getTitle());
         article.setCatalogId(Integer.parseInt(request.getParameter("catalogId")));
         article.setKeywords(request.getParameter("keywords"));
         article.setdesci(request.getParameter("desci"));

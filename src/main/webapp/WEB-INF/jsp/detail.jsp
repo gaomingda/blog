@@ -329,12 +329,12 @@
                     				   placeholder="昵称">
                     		</div>
                     	</div>
-                    	<div class="form-group">
+                 <%--   	<div class="form-group">
                                <label for="email" class="col-sm-2 control-label">邮箱</label>
                                 <div class="col-sm-3">
                                   <input type="email" id="email" class="form-control"  placeholder="邮箱">
                                 </div>
-                        </div>
+                        </div>--%>
                         <div class="form-group" style="position:relative;left:13%">
      <br/>
         <p style="text-align: right;color: red;position: absolute" id="info"></p>
@@ -347,7 +347,7 @@
 
                         $("#commentButton").click(function () {
                             if($("#content").val()==''&&$("#name").val()==''&&$("#email").val()==''){
-                                $("#info").text("提示:请输入评论内容,昵称和邮箱");
+                                $("#info").text("提示:请输入评论内容,昵称");
                             }
                             else if ($("#content").val()==''){
                                 $("#info").text("提示:请输入评论内容");
@@ -355,9 +355,7 @@
                             else if($("#name").val()==''){
                                 $("#info").text("提示:请输入昵称");
                             }
-                            else if($("#email").val()==''){
-                                $("#info").text("提示:请输入邮箱");
-                            }
+
                             else {
                              $("#info").text("");
                                 $.ajax({
@@ -366,7 +364,6 @@
                                     data: {
                                         content: $("#content").val() ,
                                         name: $("#name").val(),
-                                        email: $("#email").val(),
                                         articleId:$("#articleId").val(),
                                     },
                                     dataType: "json",

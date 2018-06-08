@@ -26,7 +26,7 @@ public class CommentController {
         comment.setContent(request.getParameter("content"));
         comment.setDate(new Date());
         comment.setName(request.getParameter("name"));
-        comment.setEmail(request.getParameter("email"));
+        comment.setEmail("null");
         HashMap<String, String> res = new HashMap<String, String>();
         if(commentService.insertComment(comment)>0){
             res.put("stateCode", "1");

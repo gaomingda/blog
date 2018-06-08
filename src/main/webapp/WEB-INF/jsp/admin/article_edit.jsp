@@ -10,9 +10,7 @@
     <script src="/js/jquery.slim.min.js" ></script>
     <script src="/js/popper.min.js" ></script>
     <script src="/js/bootstrap4.0.min.js"></script>
-    <script type="text/javascript" src="/js/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="/js/ueditor/ueditor.all.js"> </script>
-    <script type="text/javascript"  src="/js/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="/js/wangEditor.min.js"></script>
 </head>
 <body>
 <div style="position: relative;top: 10%">
@@ -49,25 +47,31 @@
             <label for="desci">简介</label>
             <textarea class="form-control" id="desci" rows="3" name="desci" placeholder="简介">${article.desci}</textarea>
         </div>
-        <div id="cont" style="display: none">
-            ${article.content}
-        </div>
         <div class="form-group">
-            <label for="editor">内容</label>
-            <script id="editor" type="text/plain"  name="content" style="width:1024px;height:500px;" ></script>
+            <label for="div1">内容</label>
+            <div id="div1">
+                ${article.content}
+            </div>
+            <textarea id="content"   type="text/plain" name="content" style="display: none">
+                ${article.content}
+            </textarea>
+        </div>
+        <input type="submit" value="发表" />
 
-            <input type="submit" />
-         </div>
     </form>
 
-           <script>
-                $(function(){
-                    var ue = UE.getEditor('editor');
-                    ue.ready(function() {
-                        ue.setContent($("#cont").html());
-                    });
-                });
-            </script>
+    <script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#div1')
+        var $text1 = $('#content')
+        editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html)
+        }
+        editor.create()
+        // 初始化 textarea 的值
+        $text1.val(editor.txt.html())
+    </script>
 
 </body>
 </html>
