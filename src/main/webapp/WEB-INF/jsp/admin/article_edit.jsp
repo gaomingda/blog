@@ -26,7 +26,7 @@
     </c:if>
 </div>
 <div class="container">
-    <form action="/admin/article/edit/do" method="post">
+    <form action="/admin/article/edit/do" method="post" accept-charset="UTF-8">
         <input type="hidden" value="${article.id}" name="id">
         <div class="form-group">
             <label for="title">文章标题</label>

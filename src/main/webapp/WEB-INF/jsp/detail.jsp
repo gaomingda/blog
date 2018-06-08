@@ -339,7 +339,7 @@
      <br/>
         <p style="text-align: right;color: red;position: absolute" id="info"></p>
         <br/>
-     <button id="commentButton" class="btn btn-default" type="submit">提交</button>
+     <button id="commentButton" class="btn btn-default"  type="submit">提交</button>
                                                 </div>
 
     			</div>
