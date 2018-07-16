@@ -66,7 +66,7 @@
         }/*去掉链接下划线*/
         #bg {
             position: relative;
-            background: url("img/296494-106.jpg") no-repeat gray;
+                background: url("https://mind222.oss-cn-beijing.aliyuncs.com/de46c183-36e0-41a9-98f7-792331eea790.jpg") no-repeat gray;
             background-size: cover;
         }/*设置背景图片*/
         #bg p {
