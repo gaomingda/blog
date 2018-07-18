@@ -1,7 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +8,7 @@
     <title>博客管理系统</title>
     <link rel="stylesheet" href="/css/bootstrap4.0.min.css" >
     <script src="/js/jquery.slim.min.js" ></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/js/popper.min.js" ></script>
     <script src="/js/bootstrap4.0.min.js"></script>
     <script src="/js/layer.js"></script>
@@ -47,6 +47,37 @@
             <input class="form-control mr-sm-2" type="search" placeholder="文章标题或内容..." aria-label="Search" name="word">
             <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">搜索</button>
         </form>
+        <%--图片上传--%>
+        <form action="${pageContext.request.contextPath}/do/uploadControl/saveInfo" method="post" id="uploadPicForm" name="uploadPicForm" enctype="multipart/form-data">
+
+            <input type="file" name="file" id="uploadFile" onChange="uploadPicForm.url.value=this.value" />
+            <input type="text" id="url" name="url" />
+            <input type="button" id="it" value="上传" style="height:29px;margin-left: -5px;" onclick="doUpload()" />
+
+        </form>
+        <script type="text/javascript">
+            function doUpload(){
+                var form = document.getElementById("uploadPicForm");
+                var formData = new FormData(form)
+                $.ajax({
+                    url: '/admin/picture/upload' ,
+                    type: 'POST',
+                    data: formData,
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        alert(data);
+                    },
+                    error: function (returndata) {
+                        alert(returndata.msg);
+                        //alert("上传失败");
+                    }
+                });
+            }
+        </script>
 
         <a class="btn btn-outline-danger btn-sm" href="/admin/logout" role="button">退出</a>
     </div>
@@ -115,6 +146,9 @@
         });
         layer.full(index);
     }
+
+
 </script>
+
 </body>
 </html>

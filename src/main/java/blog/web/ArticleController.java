@@ -5,6 +5,7 @@ import blog.domain.Article;
 import blog.domain.Comment;
 import blog.service.impl.ArticleServiceImpl;
 import blog.service.impl.CommentServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,11 +30,15 @@ import java.util.List;
 
 @Controller
 public class ArticleController {
+
+
     private final static Logger logger = LoggerFactory.getLogger(ArticleController.class);
     @Autowired
     ArticleServiceImpl articleService;
     @Autowired
     public CommentServiceImpl commentService;
+    @Autowired
+    private AliUpLoad aliUpLoad;
 
     @RequestMapping("/article")
     public ModelAndView detail(HttpServletRequest request){
@@ -165,5 +172,19 @@ public class ArticleController {
             res.put("stateCode", "0");
         }
         return res;
+    }
+
+    @RequestMapping(value = "/admin/picture/upload" ,method = RequestMethod.POST)
+    public void upload(@RequestParam(value = "file", required = false) MultipartFile file,HttpServletRequest request, HttpServletResponse resp) throws IOException {
+        String a=AliUpLoad.purObjectByBytes(file);
+
+        ObjectMapper mapper=new ObjectMapper();
+        String json=mapper.writeValueAsString(a);
+        resp.setCharacterEncoding("UTF-8");
+        resp.flushBuffer();
+        resp.getWriter().write(json);
+        resp.getWriter().flush();
+        resp.getWriter().close();
+
     }
 }
